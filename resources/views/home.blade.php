@@ -179,12 +179,38 @@
 <body>
     <h1>Добро пожаловать {{auth()->user()->name}} </h1>
 
-    <button class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        Выйти
-    </button>
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">{{auth()->user()->name}}</a>
+          <a href="{{route('logout')}}">Выход</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+
     
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
     </form>
+<script>
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 </body>
 </html>

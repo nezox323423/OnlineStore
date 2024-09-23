@@ -18,9 +18,13 @@ Route::middleware('guest')->group(function() {
 
 });
 
+
+// роут для выхода из аккаунта 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// // роут главной стран це пользователя с приветствием
 Route::get('/home', function (){
     return view('home');
 })->name('home');
+
 
