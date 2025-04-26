@@ -169,7 +169,7 @@
     @media only screen and (max-width: 479px){
      .tab{ padding: 40px 20px; }
     }
-   
+
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -179,19 +179,16 @@
 <body>
     <h1>Добро пожаловать {{auth()->user()->name}} </h1>
 
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#">{{auth()->user()->name}}</a>
-          <a href="{{route('logout')}}">Выход</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="#">{{auth()->user()->name}}</a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">Выход</button>
+        </form>
+        <a href="#">Link 3</a>
+    </div>
 
-    
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
+
 <script>
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");

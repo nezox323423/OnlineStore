@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-  
+
     // Показываем форму регистрации
     public function showRegistrationForm()
     {
@@ -37,7 +37,7 @@ class RegisterController extends Controller
     // Метод валидации данных
     protected function validator(array $data)
     {
-    
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -54,6 +54,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-       
+
 }
 
