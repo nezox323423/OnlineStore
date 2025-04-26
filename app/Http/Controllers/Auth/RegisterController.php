@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
@@ -13,13 +14,22 @@ class RegisterController extends Controller
 {
 
     // Показываем форму регистрации
-    public function showRegistrationForm()
+    /**
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+     */
+    public function showRegistrationForm(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         return view('auth.register');
     }
 
     // Обработка данных формы регистрации
-    public function register(Request $request)
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function register(Request $request): \Illuminate\Http\RedirectResponse
     {
         // Валидация данных
         $this->validator($request->all())->validate();
@@ -35,7 +45,12 @@ class RegisterController extends Controller
     }
 
     // Метод валидации данных
-    protected function validator(array $data)
+
+    /**
+     * @param array $data
+     * @return \Illuminate\Validation\Validator
+     */
+    protected function validator(array $data): \Illuminate\Validation\Validator
     {
 
         return Validator::make($data, [
@@ -46,6 +61,11 @@ class RegisterController extends Controller
     }
 
     // Метод для создания нового пользователя
+
+    /**
+     * @param array $data
+     * @return mixed
+     */
     protected function create(array $data)
     {
         return User::create([
